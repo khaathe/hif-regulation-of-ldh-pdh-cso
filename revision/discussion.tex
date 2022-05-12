@@ -1,0 +1,47 @@
+
+\section*{Discussion}
+\addcontentsline{toc}{section}{Discussion}
+
+In this paper, we formulated a mathematical model to study the impact of \acrshort{hif} on \acrshort{ldh} and \acrshort{pdh}, key enzymes of glycolysis and \acrshort{tca} cycle and thus investigating its role in cellular metabolism.
+Since its discovery, \acrshort{hif} has been actively studied by the scientific community.
+There are several modelling approaches to study the effects of \acrshort{hif} \cite{Robertson-Tessi2015, Li2020, Bedessem2014, Jia2019} and here, we investigate its role using a multi-agent model, considering a heterogeneous environment that changes over time.
+Furthermore, the model is used to investigate the impact of genes on metabolism and the effect of different environmental conditions and different genetic deregulations (such as mutations or epigenetic alterations) can have on the Warburg Effect, an overproduction of acidity due to and increased glycolysis even in normoxia.
+Over-production of lactate can also be caused by reduced use of pyruvate in the mitochondria, remaining pyruvate is then turned into lactate.
+
+Using the level of \acrshort{ldh} and \acrshort{pdh} genes as markers, we can define three different metabolic states like \cite{Li2020, Jia2019}: oxidative, glycolytic and hybrid. 
+The oxidative state corresponds to a high level of \acrshort{pdh} and a low level of \acrshort{ldh}, and inversely in a glycolytic state. 
+The hybrid state then corresponds to medium levels of both enzymes, 2:0.5 for \acrshort{ldh} and \acrshort{pdh} respectively.
+As expected, normoxia strongly selects for the first state while hypoxia selects for the second one.
+The hybrid state is observed as the oxygen levels change over time due to tumour growth.
+Thus it appears that the cell adopts this state when adapting to changing oxygen conditions or when oxygen levels vary between normoxia and hypxia several times during tumour growth (oscillating conditions in the model). \\
+We observed some differences between our model and the model in a recent paper from Li \textit{et al} \cite{Li2020}: (1) they identified a normal state with a level of \acrshort{ldh} at 1 and a level of \acrshort{pdh} at 0.1, (2) their oxidative and glycolytic states have different levels of genes than those present in our model.
+This difference in the result can be explained by the fact that we only include a small fraction of their gene regulation network in our model, to only account for the effect caused by \acrshort{hif}.
+
+We have simulated tumour growth when oxygen supply doesn't vary over time, hence differences in extracellular oxygen level can only be caused by cell consumption or reduced diffusion owing to higher cell density. 
+We found that when there are rapid changes in oxygen supply to the tumour, cells with higher glycolytic rates above the threshold of hypoxia appear. 
+It shows that varying microenvironmental conditions are sufficient to induce a Warburg phenotype for the cell. 
+The results are inline with the findings by Damaghi \textit{et al} \cite{Damaghi2020}.
+However, the model doesn't include sudden genetic mutation which can be caused by harsh conditions.
+Therefore, in our case cell would not be trapped into a Warburg phenotype and this state can be reversed to a normal state if the cell is given enough time in favourable conditions.
+Lactate secretion, which decreases the extracellular pH, depends on glucose consumption.
+A study from Casciari \textit{et al} \cite{Casciari1992} has shown that a lower extracellular pH decreases dramatically glucose consumption, the Warburg effect could also be inhibited by low pH (6.95).
+We may suppose that after difficult conditions genes may be over-expressed or inhibited which will force the cell to adopt a Warburg phenotype.
+
+The importance of \acrshort{hif} degradation in normoxia is further highlighted by the model results.
+We were also able to induce a Warburg effect by reducing the degradation rate of \acrshort{hif} by oxygen-dependent enzymes.
+Our results show that this effect only appears after a first period of hypoxia.
+It suggests that \acrshort{hif} accumulation forces the cell to adopt a glycolytic state and prevent it from returning to an oxidative state in normoxia.
+\acrshort{hif} inhibition therapy would prevent the appearance of Warburg cell type in cancer. 
+PI3K and mTOR, two genes that increase \acrshort{hif} level independently of the level of oxygen \cite{Masoud2015, Hayashi2019, Lee2004}, are studied as potential targets in anti-cancer therapy due to their altered expression in cancer and their role in signalling pathways affecting many biological functions \cite{Yang2019, Tian2019}, possibly causing \acrshort{hif} overexpression. 
+AMPK enzyme is known to interact with \acrshort{hif} \cite{Jia2019} and inhibits its expression, some evidence link this gene to anti-tumour activity \cite{Li2015}. 
+Those interactions could be added in further modelling work to study their impact on the Warburg effect as they may be important players interacting with \acrshort{hif}.
+
+It has been shown that extracellular pH can (1) influence the cell metabolism (reduce glucose consumption, increase the cells doubling time) \cite{Casciari1992}, (2) affect the ability of tumour cells to form metastasis, invade other tissue or migrate \cite{Webb1999} and (3) could be a mechanism of invasion \cite{Smallbone2008}.
+Currently, therapy targeting extracellular pH in the tumour are under development.
+Moreover, pH also affects the efficiency of different drugs such as temozolomide \cite{Stephanou2019}.
+Reducing the increase in \acrshort{ldh} level by the cell response to hypoxia lowered the rate of acid production in our simulation. Inhibitor of \acrshort{ldh} could be used in combination with pH targeting therapy to improve treatment outcomes. 
+
+Reducing the down-regulation of \acrshort{pdh} by \acrshort{hif} in the model forces the cell to rely as much as possible on oxygen to produce its energy. 
+Herein, changes in metabolism toward glycolytic activity requires lower levels of oxygen. 
+A study has shown that inhibition of \acrshort{hif} resulted in reduced lactate production, increase in oxygen consumption and radiotherapy sensitivity \cite{Leung2017}. 
+Whether increasing oxygen consumption by \acrshort{pdh} upregulation would result in better outcomes in therapy in the model remains to be studied.
