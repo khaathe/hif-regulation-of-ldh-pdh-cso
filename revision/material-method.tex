@@ -12,25 +12,27 @@ All genetic regulations are described by the following equations:
 
 \begin{align}
     \label{eq:hif}
-    \frac{dHIF}{dt} &= A_{HIF} - D_{HIF} \times H_{O_2 \to HIF}^{+} \times HIF \\
+    \frac{du}{dt} &= A_{u} - D_{u} \times H_{O_2 \to u} \times u \\
     \label{eq:ldh}
-    \frac{dLDH}{dt} &= A_{LDH} \times H_{HIF \to LDH}^{+} - D_{LDH} \times LDH \\
+    \frac{dv}{dt} &= A_{v} \times H_{u \to v} - D_{v} \times v \\
     \label{eq:pdk}
-    \frac{dPDK}{dt} &= A_{PDK} \times H_{HIF \to PDK}^{+} - D_{PDK} \times PDK \\
+    \frac{dw}{dt} &= A_{w} \times H_{u \to w} - D_{w} \times w \\
     \label{eq:pdh}
-    \frac{dPDH}{dt} &= A_{PDH} \times H_{PDK \to PDH}^{-} - D_{PDH} \times PDH 
+    \frac{dz}{dt} &= A_{z} \times H_{w \to z} - D_{z} \times z 
 \end{align}
-where A is a parameter for gene production and D for gene degradation.
+where $u$, $v$, $w$ and $z$ are respectively HIF, LDH, PDK and PDH levels; A is a parameter for gene production and D for gene degradation.
 \acrshort{ldh} and \acrshort{pdk} upregulations by \acrshort{hif} and \acrshort{pdh} downregulations by \acrshort{pdk} are described with a non-linear function named the shifted-Hill function.
 In the same way, the increased \acrshort{hif} protein degradation in normoxia is described using the same function. 
 The shifted-Hill function has the form:
-\begin{equation*}
-    H^{+/-}_{Y \to Z} = \frac{S^n}{S^n+Y^n} + \gamma_{Y \to Z} \frac{Y^n}{S^n+Y^n}.
-\end{equation*}
-Here, $H_{Y \to Z}$ represents the effect of the regulating gene $Y$ on the regulated gene $Z$.
-$H^+_{Y \to Z}$ indicates an upregulation, while $H^-_{Y \to Z}$ is a downregulation.
+\begin{equation}
+    \label{formula:hill}
+    H_{Y \to Z} = \frac{S^n}{S^n+Y^n} + \gamma_{Y \to Z} \frac{Y^n}{S^n+Y^n}.
+\end{equation}
+Here, n is the Hill coefficient. 
 S is the gene level with a half-threshold of production.
 The positive parameter $\gamma$ represents an activation if $>1$ or an inhibition if $<1$.
+$H_{Y \to Z}$ represents the effect of the regulating gene $Y$ on the regulated gene $Z$, it
+can be an upregulation, if $\gamma$ is $>1$, or a downregulation, if $\gamma$ is $<1$.
 All genes levels are dimensionless, parameters used in the equation above are summarised in table \ref{tab:param-genetic-reg}.
 
 \begin{table}
@@ -39,21 +41,21 @@ All genes levels are dimensionless, parameters used in the equation above are su
         \hline
         Parameter & Value & Dimension & Parameter & Value & Dimension\\
         \hline
-        A\textsubscript{\acrshort{hif}} &  0.05 & 1/min & D\textsubscript{\acrshort{hif}} & 0.005 & 1/min\\
+        $A_u$ &  0.05 & 1/min & $D_u$ & 0.005 & 1/min\\
         \hline
-        A\textsubscript{\acrshort{ldh}} &  0.005 & 1/min & D\textsubscript{\acrshort{ldh}} & 0.005 & 1/min \\
+        $A_v$ &  0.005 & 1/min & $D_v$ & 0.005 & 1/min \\
         \hline
-        A\textsubscript{\acrshort{pdk}} &  0.005 & 1/min & D\textsubscript{\acrshort{pdk}} & 0.005 & 1/min \\
+        $A_w$ &  0.005 & 1/min & $D_w$ & 0.005 & 1/min \\
         \hline
-        A\textsubscript{\acrshort{pdh}} &  0.005 & 1/min & D\textsubscript{\acrshort{pdh}} & 0.005 & 1/min \\
+        $A_z$ &  0.005 & 1/min & $D_z$ & 0.005 & 1/min \\
         \hline
-        $S_{O_2 \to HIF}$ & 0.02085 & mmol/L & $S_{HIF \to LDH}$ & 4.48 & - \\
+        $S_{O_2 \to u}$ & 0.02085 & mmol/L & $S_{u \to v}$ & 4.48 & - \\
         \hline
-        $S_{HIF \to PDK}$ & 5.0 & - & $S_{PDK \to PDH}$ & 2.2 & - \\
+        $S_{u \to w}$ & 5.0 & - & $S_{w \to z}$ & 2.2 & - \\
         \hline
-        $\gamma_{O_2 \to HIF}$ & 10.0 & - & $\gamma_{HIF \to LDH}$ & 3.61 & - \\
+        $\gamma_{O_2 \to u}$ & 10.0 & - & $\gamma_{u \to v}$ & 3.61 & - \\
         \hline
-        $\gamma_{HIF \to PDK}$ & 6.97 & - & $\gamma_{PDK \to PDH}$ & 0.14 & - \\
+        $\gamma_{u \to w}$ & 6.97 & - & $\gamma_{w \to z}$ & 0.14 & - \\
         \hline
     \end{tabular}
     \caption{
@@ -66,23 +68,32 @@ All genes levels are dimensionless, parameters used in the equation above are su
 \subsection*{Cell Metabolism}
 \addcontentsline{toc}{subsection}{Cellular Metabolism}
 
-Cells consume glucose and oxygen to produce \acrshort{atp}.
 Nutrient consumption rates change over time depending on microenvironment conditions.
-In normoxia, cells mostly use aerobic pathways (glycolysis + \acrshort{oxphos}) which produce more \acrshort{atp} per mole mole of glucose consumed than anaerobic pathways (glycolysis + lactate production).
-In hypoxia, the cell metabolism transits toward a glycolytic pathway involving lactate production. 
-Cells consumption and production are derived from the model described by \cite{Robertson-Tessi2015}.
-Here, the impact of the level of genes on metabolism is modelled by a non-linear function to tune the maximal consumption of oxygen and glucose. 
-Furthermore, \acrshort{ldh} and \acrshort{pdh} levels are used to tune glycolysis and \acrshort{tca} pathways in the model as they have an important role in the conversion of pyruvate \cite{Zimmerman2011}.
-We define $p_O$ and $p_G$, two terms to adjust the consumption rates of oxygen and glucose according to their respective key enzyme level in the form:
-\begin{equation*}
-    p_X = \frac{ p_{X_{MAX}} - p_{X_{MIN}} }{ 1 + \exp{ (-l_X (X - X_0)) }} + p_{X_{MIN}}
-\end{equation*}
-Here, $p_{X_{MAX}}$ and $p_{X_{MIN}}$ are both the maximal and minimal value of $p_X$.
-$X$ is the current level of genes, $X_0$ the midpoint of the function and $l_X$ is the steepness of the curve. \\
+In normoxia, glycolysis transform glucose to pyruvate, then pyruvate is converted to 
+AcetylCoA by \acrshort{pdh} enzymes to feed the \acrshort{tca} cycle.
+The \acrshort{tca} cycle works in cooperation with \acrshort{oxphos} to produce \acrshort{atp} using oxygen, which constitute the aerobic pathway \cite{Zimmerman2011}.
+Since the conversion of pyruvate to AcetylCoA is catalyzed by the PDH enzyme, its availability bound the use of \acrshort{tca} and should be reflected in the consumption of oxygen.
+In hypoxia, glucose consumption is increased to produce the \acrshort{atp} needed using aerobic pathways. Pyruvate formed by glycolysis is then turned into lactate by \acrshort{ldh} enzymes, increasing acidity in the microenvironment \cite{Zimmerman2011}. Like \acrshort{pdh}, increased \acrshort{ldh} levels should reflect an increased usage of anaerobic pathways with higher consumption of glucose.
+As \acrshort{pdh} and \acrshort{ldh} play an important role in the fate of pyruvate, their respective level should impact the metabolism of cells in our model. \\
+In equation \ref*{formula:po} and \ref*{formula:pg}, we define $p_O$ and $p_G$, two terms to describe the impact of \acrshort{ldh} and \acrshort{pdh} on glucose and oxygen consumptions using a sigmoid function based on the logistic funtion.
+$p_O$ and $p_G$ will adjust the consumptions rates of oxygen and glucose defined in equation \ref*{fun:fo} and \ref*{fun:fg}, by increasing or decreasing the maximal rates according to the level of \acrshort{pdh} and \acrshort{ldh}.
+\begin{align} 
+    \label{formula:po}
+    p_O = \frac{ \phi_O - \psi_O }{ 1 + \exp{ (-l_z (z - z_0)) }} + \psi_O \\
+    \label{formula:pg}
+    p_G = \frac{ \phi_G - \psi_G }{ 1 + \exp{ (-l_v (v - v_0)) }} + \psi_G
+\end{align}
+Here, $\phi_O$ and $\phi_G$ are the maximal values for $p_O$ and $p_G$. 
+$\psi_O$ and $\psi_G$ are the minimal values for $p_O$ and $p_G$.
+$z$ and $v$ are the current level of \acrshort{pdh} and \acrshort{ldh}.
+$z_0$ and $v_0$ represent the midpoint of $p_O$ and $p_G$. 
+$l_z$ and $l_v$ represent the steepness of the curve for $p_O$ and $p_G$. \\
+Cells consumption and production are derived from the model described by \cite{Robertson-Tessi2015}. \\
 Oxygen consumption is determined using a Michaelis-Menten function \cite{Robertson-Tessi2015}:
-\begin{equation*}
+\begin{equation}
+    \label{fun:fo}
     f_O = p_{O} V_O { \frac{O_e}{ O_e + K_O} }
-\end{equation*}
+\end{equation}
 \acrshort{pdh} allows the pyruvate to enter the \acrshort{tca} cycle as Acetyl Coenzyme A, it is a limiting step in the aerobic pathway.
 This is included in the model by adjusting the maximum oxygen consumption rate $V_O$ using the term $p_O$ to represent \acrshort{pdh} level effect on metabolism.
 $O_e$ is the extracellular oxygen concentration.
@@ -90,41 +101,52 @@ $K_O$ is the extracellular oxygen concentration at which the cell oxygen consump
 Following Robertson-Tessi \textit{et al} \cite{Robertson-Tessi2015}, we assume that \acrshort{atp} demand drives glucose consumption.
 In low oxygen conditions, the cell will consume more glucose to produce \acrshort{atp} in the last step of the glycolysis, then pyruvate is turned into lactate by the \acrshort{ldh} enzyme. 
 An increase of \acrshort{ldh} indicates an upregulation of anaerobic pathways which means here, an increase in glucose consumption.
-We use the term $p_G$ to describe this phenomenon in the equation \cite{Robertson-Tessi2015}:
-\begin{equation*}
+We use the term $p_G$ to increase glucose consumption in the equation \ref*{fun:fg} when levels of \acrshort{ldh} increase \cite{Robertson-Tessi2015}.
+\begin{equation}
+    \label{fun:fg}
     f_G = ( \frac{p_{G} A_0}{2} - \frac{29 f_O}{10} ) { \frac{G_e}{ G_e + K_G} }
-\end{equation*}
+\end{equation}
 $A_0$ is the target \acrshort{atp} production.
 $G_e$ is the extracellular glucose concentration.
 $K_G$ is the extracellular glucose concentration at which the glucose consumption rate is half-maximal. \\
+In this paper, we are studying how \acrshort{hif} can impact the interplay between aerobic (\acrshort{tca} + \acrshort{oxphos}) and anaerobic (glycolysis +lactate secretion) pathways to generate \acrshort{atp}, due to its \acrshort{pdh} and \acrshort{ldh} enzymes important for conversion of pyruvate.
+Therefore, we do not directly model aerobic and anaerobic pathways but rather we compute the theoretical level of \acrshort{atp} generated by both processes.
 We take the same stoichiometric coefficients as in \cite{Robertson-Tessi2015}: glycolysis uses 1 mole of glucose produces 2 moles of \acrshort{atp}, aerobic pathway uses 1 mole of glucose and 5 moles of oxygen to produce 29 moles of \acrshort{atp}.
 We can compute the \acrshort{atp} produced from the nutrients consumed using the yield from glycolysis and aerobic pathway \cite{Robertson-Tessi2015}:
-\begin{equation*}
-    f_{ATP} =  2 f_G + \frac{29 f_O}{5}
-\end{equation*}
+\begin{equation}
+    \label{fun:fa}
+    f_{A} =  2 f_G + \frac{29 f_O}{5}
+\end{equation}
 Glycolysis produces 2 moles of pyruvate with 1 mole of glucose.
 If oxygen is absent, pyruvate is turned into lactate, giving a total of 2 moles of lactate \cite{BlancoAntonio2017}.
 Lactic acid production is given by the glucose consumed:
-\begin{equation*}
+\begin{equation}
+    \label{fun:fh}
     f_{H^+} = k_H 2 f_G
-\end{equation*}
+\end{equation}
 $k_H$ is a fixed parameter for proton buffering (dimensionless). \\
 Quantities consumed and produced by one cell are modelled using the ODE:
-\begin{equation}
-    \label{eq:ode}
-    \frac{dX}{dt} = f_X
-\end{equation}
+\begin{align}
+    \label{ode:do}
+    \frac{dO}{dt} = f_O \\
+    \label{ode:dg}
+    \frac{dG}{dt} = f_G \\
+    \label{ode:da}
+    \frac{dA}{dt} = f_A \\
+    \label{ode:dh}
+    \frac{dH^+}{dt} = f_H^+ 
+\end{align}
 with X is the molecule consumed or produced by the cell. The four variables described are oxygen (O),
-glucose (G), ATP (ATP), and protons (\protons). \\
+glucose (G), ATP (A), and protons (\protons). \\
 The extracellular quantities of three molecules oxygen (O), glucose (G) and protons (\protons) are described in the model by:
-\begin{equation}
-    \label{eq:pde}
-    \frac{\partial X}{\partial t} = 
-    \begin{cases}
-         D_{X} \nabla^2 X  - f_X^i \text{,  if X=\{O, G\} } \\
-         D_{X} \nabla^2 X  + f_X^i \text{,  if X=\protons }
-    \end{cases}
-\end{equation}
+\begin{align}
+    \label{pde:do}
+    \frac{\partial O}{\partial t} &= D_{O} \nabla^2 O - f_O \\
+    \label{pde:dg}
+    \frac{\partial G}{\partial t} &= D_{G} \nabla^2 G - f_G \\
+    \label{pde:dh}
+    \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + f_{H^+} 
+\end{align}
 $X$ is the diffusible molecule, $D_X$ is the diffusion coefficient for molecule X, $f_X^i$ describe the impact of each cell $i$ on the extracellular concentration. \\
 Parameters used in those functions are summarised in table \ref{tab:param-metabolism}.
 The schematic in figure \ref{fig:model} shows the cellular metabolism and the genetics regulation implemented in the model.
@@ -155,21 +177,21 @@ The schematic in figure \ref{fig:model} shows the cellular metabolism and the ge
         \hline
             A0 & 0.10875 & mmol/L/min \\
         \hline
-            p\textsubscript{G\textsubscript{MAX}} & 50 & - \\
+            $\phi_G$ & 50 & - \\
         \hline
-            p\textsubscript{G\textsubscript{MIN}} & 1 & - \\
+            $\psi_G$ & 1 & - \\
         \hline
-            l\textsubscript{G} & 4 & - \\
+            $l_G$ & 4 & - \\
         \hline
-            LDH\textsubscript{0} & 2.35 & - \\
+            $v_0$ & 2.35 & - \\
         \hline
-            p\textsubscript{O\textsubscript{MAX}} & 1 & - \\
+            $\phi_O$ & 1 & - \\
         \hline
-            p\textsubscript{O\textsubscript{MIN}} & 0 & - \\
+            $\psi_O$ & 0 & - \\
         \hline
-            l\textsubscript{O} & 15 & - \\
+            $l_O$ & 15 & - \\
         \hline
-            PDH\textsubscript{0} & 0.575 & - \\
+            $z_0$ & 0.575 & - \\
         \hline
     \end{tabular}
     \caption{Parameters for metabolism. Dimensionless unit are indicated with -.}
@@ -189,7 +211,7 @@ This framework has good performance with a low memory footprint, allows the user
 Here, the impact of extracellular oxygen concentration is studied considering different boundary conditions: physiological normoxia at 0.056 mmol/L (5\% O\textsubscript{2}), pathological hypoxia at 0.01112 mmol/L (1\% O\textsubscript{2}) and a last where boundary conditions are modified during the simulation from physiological normoxia to pathological hypoxia. 
 The hypoxia threshold is set at 0.02085 (2\% O\textsubscript{2}), the level at which \acrshort{hif} has a half-maximal response \cite{McKeown2014}.
 
-The governing ODEs (equation \ref{eq:hif} - \ref{eq:ode}) and PDEs (equation \ref{eq:pde}) are run at each timestep to compute cell nutrient consumption, energy and acidity production for that period. 
+The governing ODEs (equation \ref{eq:hif} - \ref{eq:pdh} and \ref{ode:do} - \ref{ode:dh}) and PDEs (equation \ref{pde:do} - \ref{pde:dh}) are run at each timestep to compute cell nutrient consumption, energy and acidity production for that period. 
 After each time step, the cell state is updated according to the quantity of \acrshort{atp} generated and the extracellular pH.
 Therefore, cells can proliferate and divide only if they were able to generate enough \acrshort{atp} and if extracellular pH is higher than the acid resistance of the cell (6.1 \cite{Robertson-Tessi2015}). 
 If the quantity of \acrshort{atp} generated is less than a threshold ATP\textsubscript{quiescence}, the cell enters quiescence and is then prevented to complete the G1 phase. 
