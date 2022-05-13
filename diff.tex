@@ -1,0 +1,122 @@
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+% Load titlesec before hyperref because it causes conflict otherwise
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{subfiles}
+\usepackage[acronym]{glossaries}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{todonotes}
+\usepackage{xcolor}
+\usepackage{authblk}
+
+% TODO: Remove package if unecessary
+\usepackage{xcolor}
+\usepackage{soul}
+
+\titleformat{\subsection}{\bfseries\normalsize}{}{}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{}{}
+
+\geometry{
+    a4paper,
+    left = 2.5cm,
+    right = 2.5cm,
+    bottom = 2.5cm,
+    top = 2.5cm
+}
+
+\usepackage[
+style=numeric,
+sorting=none
+]{biblatex}
+
+
+\addbibresource{biblio.bib}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+    citecolor=blue,
+    pdfpagemode=FullScreen
+}
+
+% To disable link of the acronyms
+% Could load glossaries package before hyperref for same result
+\glsdisablehyper 
+
+\newcommand{\protons}{H\textsuperscript{+}}
+
+\renewcommand{\baselinestretch}{1.5}
+
+%Preamble commands:
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+
+\title{Modelling the role of \acrshort{hif} in the regulation of metabolic key genes \acrshort{ldh} and \acrshort{pdh}: Emergence of Warburg Phenotype.}
+
+\author[1,2]{Kévin SPINICCI}
+\author[1]{Pierre JACQUET}
+\author[2]{Gibin POWATHIL}
+\author[1]{Angélique STEPHANOU}
+%\author[1]{Alaa TAFECH}
+
+\affil[1]{Univ. Grenoble Alpes, CNRS, UMR 5525, VetAgro Sup, Grenoble INP, TIMC, 38000 Grenoble, France}
+\affil[2]{Department of Mathematics - Swansea University}
+
+\date{February 2022}
+
+\subfile{diff/acronym.tex}
+
+\begin{document}
+
+\maketitle
+
+\setcounter{secnumdepth}{0}
+
+\subfile{diff/abstract.tex}
+
+% \begin{multicols*}{2}
+\subfile{diff/introduction.tex}
+
+\subfile{diff/material-method.tex}
+
+\subfile{diff/result.tex}
+
+\subfile{diff/discussion.tex}
+
+\subfile{diff/conclusion.tex}
+
+\section{Acknowledgements}
+We thank Alaa Tafech for providing the picture of the spheroid in Figure 7. 
+This project has received financial support from CNRS through the MITI interdisciplinary programs. \\
+Kévin SPINICCI gratefully acknowledges the support of Swansea University Strategic partnership Research Scholarship and the support of IDEX Université Grenoble Alpes.
+
+\section{Conflicts of Interest}
+The authors declare no conflict of interest.
+
+% \end{multicols*}
+
+\printbibliography
+
+\end{document}
