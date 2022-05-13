@@ -1,5 +1,7 @@
 \documentclass[10pt]{article}
 \usepackage[utf8]{inputenc}
+% Load titlesec before hyperref because it causes conflict otherwise
+\usepackage{titlesec}
 \usepackage{hyperref}
 \usepackage{subfiles}
 \usepackage[acronym]{glossaries}
@@ -9,7 +11,6 @@
 \usepackage{todonotes}
 \usepackage{xcolor}
 \usepackage{authblk}
-\usepackage{titlesec}
 
 % TODO: Remove package if unecessary
 \usepackage{xcolor}
@@ -70,6 +71,8 @@ sorting=none
 
 \maketitle
 
+\setcounter{secnumdepth}{0}
+
 \subfile{manuscript/abstract.tex}
 
 % \begin{multicols*}{2}
@@ -83,12 +86,12 @@ sorting=none
 
 \subfile{manuscript/conclusion.tex}
 
-\section*{Acknowledgements}
+\section{Acknowledgements}
 We thank Alaa Tafech for providing the picture of the spheroid in Figure 7. 
 This project has received financial support from CNRS through the MITI interdisciplinary programs. \\
 Kévin SPINICCI gratefully acknowledges the support of Swansea University Strategic partnership Research Scholarship and the support of IDEX Université Grenoble Alpes.
 
-\section*{Conflicts of Interest}
+\section{Conflicts of Interest}
 The authors declare no conflict of interest.
 
 % \end{multicols*}
