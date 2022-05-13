@@ -204,6 +204,13 @@ Therefore, the numerical implementation of the model must have sufficient perfor
 In this regard, we selected Physicell, an open-source C++ framework designed to run simulations containing a large population of cells. 
 This framework has good performance with a low memory footprint, allows the user to implement his custom code and define custom cell types, run a multi-agent-based simulation in 2D or 3D \cite{Ghaffarizadeh2018}. 
 
+Most aspect of the model are handled by the physicell software, this include : cell division and progression through the cell cycle, cell adhesion and repulsion, substrate diffusion, cell secretion and uptake into the microenvironment.
+Cells are modelled with the shape of a sphere with no deformation possible, adhesion and repulsion are implemented using a simple potential function.
+The cell division process is implemented as a cycle, where the user can define each steps and create links between them with an associated transition rate.
+There is no condition on the neighbourhood, a cell will divide even if it is surrounded by other cells as long as there is sufficient nutrient.
+As a consequence, certain regions of the tumour will exhibit a higher cell density and a lower substrate diffusion.
+In the model, phases duration are 5h in G1, 8h in S, 4h in G2 and 1h in M, for a total of 18h to complete a cell cycle \cite{Cooper2000}.
+
 Here, the impact of extracellular oxygen concentration is studied considering different boundary conditions: physiological normoxia at 0.056 mmol/L (5\% O\textsubscript{2}), pathological hypoxia at 0.01112 mmol/L (1\% O\textsubscript{2}) and a last where boundary conditions are modified during the simulation from physiological normoxia to pathological hypoxia. 
 The hypoxia threshold is set at 0.02085 (2\% O\textsubscript{2}), the level at which \acrshort{hif} has a half-maximal response \cite{McKeown2014}.
 
@@ -211,6 +218,10 @@ The governing ODEs (equation \ref{eq:hif} - \ref{eq:pdh} and \ref{ode:do} - \ref
 After each time step, the cell state is updated according to the quantity of \acrshort{atp} generated and the extracellular pH.
 Therefore, cells can proliferate and divide only if they were able to generate enough \acrshort{atp} and if extracellular pH is higher than the acid resistance of the cell (6.1 \cite{Robertson-Tessi2015}). 
 If the quantity of \acrshort{atp} generated is less than a threshold ATP\textsubscript{quiescence}, the cell enters quiescence and is then prevented to complete the G1 phase. 
-If the quantity of \acrshort{atp} generated is less than a threshold ATP\textsubscript{death} or if the pH is less than a threshold pH\textsubscript{death}, the cell dies and enters into the death cycle where it is progressively removed from the microenvironment by lysis. 
-Cell cycle phase transition is handled by the PhysiCell software.
-Phases duration are 5h in G1, 8h in S, 4h in G2 and 1h in M, for a total of 18h to complete a cell cycle \cite{Cooper2000}.
+If the quantity of \acrshort{atp} generated is less than a threshold ATP\textsubscript{death} or if the pH is less than a threshold pH\textsubscript{death}, the cell dies and enters into the death cycle where it is progressively removed from the microenvironment by lysis.
+
+To simulate entry into quiescence by the cell, we created a phase G0 with a reversible link to the phase G1 of the cell cycle.
+If the condition for proliferation are not met, we set the transition rate from G1 to G0 at a maximum value and the rate from G0 to G1 at 0.
+The cell is forced to enter the G0 phase and is prevented to transit to the G1 phase to continue its division.
+Once the level of \acrshort{atp} rise again, we revert the transition rates values to allow the cell leaving the G0 phase and divide anew.
+The cell can only transit to the G0 phase from the G1 phase, thus it will complete its cycle once it leaved the G1 phase and started to divide even if \acrshort{atp} levels fall while the division process was ongoing.
