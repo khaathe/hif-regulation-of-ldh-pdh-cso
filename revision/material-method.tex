@@ -18,7 +18,7 @@ All genetic regulations are described by the following equations:
     \label{eq:pdh}
     \frac{dz}{dt} &= A_{z} \times H_{w \to z} - D_{z} \times z 
 \end{align}
-where $u$, $v$, $w$ and $z$ are respectively HIF, LDH, PDK and PDH levels; A is a parameter for gene production and D for gene degradation.
+where $u$, $v$, $w$ and $z$ are HIF, LDH, PDK and PDH levels, respectively; A is a parameter for gene production and D for gene degradation.
 \acrshort{ldh} and \acrshort{pdk} upregulations by \acrshort{hif} and \acrshort{pdh} downregulations by \acrshort{pdk} are described with a non-linear function named the shifted-Hill function.
 In the same way, the increased \acrshort{hif} protein degradation in normoxia is described using the same function. 
 The shifted-Hill function has the form:
@@ -133,18 +133,17 @@ Quantities consumed and produced by one cell are modelled using the ODE:
     \label{ode:dh}
     \frac{dH^+}{dt} = f_H^+ 
 \end{align}
-with X is the molecule consumed or produced by the cell. The four variables described are oxygen (O),
-glucose (G), ATP (A), and protons (\protons). \\
+where O, G, A and \protons are oxygen, glucose, atp and protons.
 The extracellular quantities of three molecules oxygen (O), glucose (G) and protons (\protons) are described in the model by:
 \begin{align}
     \label{pde:do}
-    \frac{\partial O}{\partial t} &= D_{O} \nabla^2 O - f_O \\
+    \frac{\partial O}{\partial t} &= D_O \nabla^2 O - f_O \\
     \label{pde:dg}
-    \frac{\partial G}{\partial t} &= D_{G} \nabla^2 G - f_G \\
+    \frac{\partial G}{\partial t} &= D_G \nabla^2 G - f_G \\
     \label{pde:dh}
     \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + f_{H^+} 
 \end{align}
-$X$ is the diffusible molecule, $D_X$ is the diffusion coefficient for molecule X, $f_X^i$ describe the impact of each cell $i$ on the extracellular concentration. \\
+$D_O$, $D_G$ and $D_{H^+}$ are the diffusion coefficient for each molecules. $f_O$, $f_G$ and $f_{H^+}$ describe the impact of each cell on the extracellular concentration. \\
 Parameters used in those functions are summarised in table \ref{tab:param-metabolism}.
 The schematic in figure \ref{fig:model} shows the cellular metabolism and the genetics regulation implemented in the model.
 
