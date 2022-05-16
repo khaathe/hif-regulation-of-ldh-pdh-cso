@@ -134,6 +134,8 @@ Quantities consumed and produced by one cell are modelled using the ODE:
     \frac{dH^+}{dt} = f_H^+ 
 \end{align}
 where O, G, A and \protons are oxygen, glucose, atp and protons.
+Since we are measuring quantities that are consummed or produced by the cells, initial values for equations \ref*{ode:do} - \ref*{ode:dh} should be equal to 0. 
+Thus, $O(t=0) = G(t=0) = A(t=0) = H^+(t=0) = 0$. \\
 The extracellular quantities of three molecules oxygen (O), glucose (G) and protons (\protons) are described in the model by:
 \begin{align}
     \label{pde:do}
@@ -144,6 +146,9 @@ The extracellular quantities of three molecules oxygen (O), glucose (G) and prot
     \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + f_{H^+} 
 \end{align}
 $D_O$, $D_G$ and $D_{H^+}$ are the diffusion coefficient for each molecules. $f_O$, $f_G$ and $f_{H^+}$ describe the impact of each cell on the extracellular concentration. \\
+Initial values for equations \ref*{pde:do} - \ref*{pde:dh} are $O(x,y,0) = \{0.056, 0.01112\}$  mmol/L, $G(x,y,0) = 5.0$  mmol/L and $H^+(x,y,0) = 3.98.10^{-5}$  mmol/L (pH 7.4).
+Let $x_0$ and $y_0$ the lower boundary of the domain in $x$ and $y$, $x_L$ and $y_L$ the upper boundary in $x$ and $y$.
+Boundary values for equations \ref*{pde:do} - \ref*{pde:dh} are $O(x,y,t) = \{0.056, 0.01112\}$, $G(x,y,t) = 5.0$ mmol/L and $H^+(x,y,t) = 3.98.10^{-5}$ mmol/L (pH 7.4) for $x=\{x_0, x_L\}$ and $y=\{y_0, x_L\}$.
 Parameters used in those functions are summarised in table \ref{tab:param-metabolism}.
 The schematic in figure \ref{fig:model} shows the cellular metabolism and the genetics regulation implemented in the model.
 
