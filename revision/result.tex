@@ -123,18 +123,19 @@ Therefore, hypoxic conditions directly select cells with high glycolytic activit
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{img/environmental-condition/ldh_and_pdh}
+    \includegraphics[width=\textwidth]{img/plot-ldh-pdh-7d.png}
     \caption{ 
         Plot of level of \acrshort{pdh} against the level of \acrshort{ldh} coloured by the extracellular oxygen concentration.
-        The graph shows the results at different times for different conditions.
+        The graph shows the results after 7 days of growth for different conditions.
         In oscillating conditions, oxygen concentration is slowly decreased from normoxia to hypoxia during 6h, then oxygen is increased to normoxia at the same rate.
         This process is repeated until the end of the simulation.
-        Only living cell are represented on the graph.
+        The figure include three different genetic perturbations: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to u = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma u \to v = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma w \to z = 0.7 $).
+        In those last cases, tumour growth was initiated in normoxia.
     }
-    \label{fig:ldh-pdh-environment}
+    \label{fig:ldh-pdh-7d}
 \end{figure}    
 
-The fact that, in the model, hypoxia may select cells with high glycolytic activity is supported by the levels of \acrshort{ldh}/\acrshort{pdh} genes presented in figure \ref{fig:ldh-pdh-environment}.
+The fact that, in the model, hypoxia may select cells with high glycolytic activity is supported by the levels of \acrshort{ldh}/\acrshort{pdh} genes presented in figure \ref{fig:ldh-pdh-7d}.
 In normoxia, cells have a level of \acrshort{ldh} and \acrshort{pdh} of 1 for both, it can be associated to an oxidative state.
 In hypoxia, \acrshort{ldh} level reaches 3.0 and \acrshort{pdh} level falls to 0.25, it can be associated to a glycolytic state.
 At the beginning of the simulation in normoxic conditions, cells have 1:1 \acrshort{ldh}/\acrshort{pdh} levels.
@@ -148,7 +149,7 @@ Interestingly, extracellular oxygen concentration after 7 days is higher when ox
 Since cells are put in hypoxia several times a day, they rely more on glycolysis and consume less oxygen.
 Cells with higher glycolytic activity ($2.5 \times 10^{-4} \text{mmol/L/min}$) even above the threshold of hypoxia appear at 2 days.
 It suggests that the Warburg Effect can be caused by environmental conditions with rapid variations.
-Combined with figure \ref{fig:ldh-pdh-environment}, genetic levels seems to indicate that cells cannot enter a complete oxidative state and are trapped either in a hybrid or a glycolytic state. 
+Combined with figure \ref{fig:ldh-pdh-7d}, genetic levels seems to indicate that cells cannot enter a complete oxidative state and are trapped either in a hybrid or a glycolytic state. 
 
 \subsubsection{Influence of the intrinsic genetic properties of the cell}
 
@@ -162,20 +163,9 @@ Figure \ref{fig:proton-prod-rate} shows that cells start to become hypoxic after
 After 7 days with a reduced \acrshort{hif} degradation rate by oxygen, extracellular oxygen goes back to normoxic levels yet cells have a higher acid production rate that corresponds to a Warburg effect.
 In this case, we suppose that cells slowly drain oxygen levels in the environment to a point where hypoxia is reached.
 Due to poor oxygen conditions, cells adapt their metabolism to enter a glycolytic state that they keep even if the oxygen supply goes back above 2 \%O\textsubscript{2}.
-Together with the result in figure \ref{fig:ldh-pdh-genetic}, this might be caused by a delay in the response from returning to normal conditions since \acrshort{hif} regulation by O\textsubscript{2} is affected.
+Together with the result in figure \ref{fig:ldh-pdh-7d}, this might be caused by a delay in the response from returning to normal conditions since \acrshort{hif} regulation by O\textsubscript{2} is affected.
 While some cells have levels of \acrshort{ldh} greater than 2 and \acrshort{pdh} lower than 0.50 (hybrid to glycolytic state), some have a ratio of \acrshort{ldh}/\acrshort{pdh} almost equal to 1:1.
 This suggests that the Warburg Effect isn't irreversible with a reduced \acrshort{hif} degradation rate by oxygen alone. 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{img/genetic-perturbation/ldh_and_pdh}
-    \caption{
-        Plot of level of \acrshort{pdh} against the level of \acrshort{ldh} coloured by the extracellular oxygen concentration.
-        The graph shows the results at different times with three different genetic perturbations: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to \acrshort{hif} = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma \acrshort{hif} \to \acrshort{ldh} = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma \acrshort{pdk} \to \acrshort{pdh} = 0.7 $).
-        Tumour growth was initiated in normoxia.
-    }
-    \label{fig:ldh-pdh-genetic}
-\end{figure}
 
 As expected, reducing the increase in \acrshort{ldh} levels due to \acrshort{hif} response doesn't induce a high acidification rate in normoxia but affects the maximum acid production rate and level of \acrshort{ldh}.
 Instead of inducing a glycolytic phenotype, it seems to repress it.
