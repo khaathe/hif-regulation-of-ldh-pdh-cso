@@ -57,7 +57,7 @@ We ran several simulations with different environmental oxygen conditions to ass
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{img/environmental-condition/tumour_current_phase}
+    \includegraphics[width=\textwidth]{img/tumour_current_phase}
     \caption{ 
         Evolution of tumour growth at different times in different conditions.
         In oscillating conditions, the oxygen concentration is slowly decreased from normoxia to hypoxia during 6 hours, then cells are slowly put back in normoxia at the same rate.
@@ -150,19 +150,7 @@ Combined with figure \ref{fig:ldh-pdh-environment}, genetic levels seems to indi
 
 \subsubsection{Influence of the intrinsic genetic properties of the cell}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{img/genetic-perturbation/tumour_current_phase}
-    \caption{
-        Evolution of tumour growth at different time with different genetic perturbations: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to \acrshort{hif} = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma \acrshort{hif} \to \acrshort{ldh} = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma \acrshort{pdk} \to \acrshort{pdh} = 0.7 $).
-        The normoxia conditions represent the growth with base parameters or no genetic deregulation ($\gamma O_2 \to \acrshort{hif} = 10.0 $, $\gamma \acrshort{hif} \to \acrshort{ldh} = 3.61 $, $\gamma \acrshort{pdk} \to \acrshort{pdh} = 0.14 $). 
-        New values have been selected following a qualitative exploration of the parameters effect on the model at the cell scale.
-        Tumour growth was initiated in normoxia in all the simulations.
-    }
-    \label{fig:tumour-state-genetic}
-\end{figure}
-
-In figure \ref{fig:tumour-state-genetic}, tumour growth is initiated in normoxia. 
+Here, tumour growth is initiated in normoxia (result not shown). 
 Extracellular oxygen concentrations only vary due to cells consumption and reduced diffusion in the tumour.
 Only genetics regulations have been modified between each simulation to assess the impact of different genetic deregulations (mutations or epigenetic alterations) on tumour growth and cell metabolism. 
 Results are similar to normoxic conditions with no genetic deregulations (figure \ref{fig:tumour-state-environment}). 
