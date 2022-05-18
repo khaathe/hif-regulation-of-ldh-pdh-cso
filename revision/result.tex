@@ -96,21 +96,19 @@ However, a ring of necrotic cells in the swelling phase appears thicker than in 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth]{img/plot-proton-rate.png}
+    \includegraphics[width=\textwidth]{img/environmental-condition/acid_rate_o_extra}
     \caption{ 
-        Acid production rate following oxygen extracellular concentrations at different times in different conditions.  
+        Acid production rate following oxygen extracellular concentrations at different times in different conditions. 
+        The red line indicates the hypoxia threshold.
+        In oscillating conditions, oxygen concentration is slowly decreased from normoxia to hypoxia during 6h, then oxygen is increased to normoxia at the same rate.
         This process is repeated until the end of the simulation.
         Only living cells are represented on the graph.
         The green rectangle represents the region corresponding to a Warburg effect.
-        The red line indicates the hypoxia threshold.
-        In oscillating conditions, oxygen concentration is slowly decreased from normoxia to hypoxia during 6h, then oxygen is increased to normoxia at the same rate.
-        Three genetics pertubations have been selected: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to u = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma u \to v = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma w \to z = 0.7 $).
-        In those simulations, tumour growth was initiated in normoxia.
     }
-    \label{fig:proton-prod-rate}
+    \label{fig:prod-rate-environment}
 \end{figure}
 
-Results in figure \ref{fig:proton-prod-rate} show acid production according to the extracellular oxygen concentration. 
+Results in figure \ref{fig:prod-rate-environment} show acid production according to the extracellular oxygen concentration. 
 Red line y-axis intercept is equal to 0.02085 mmol/L (2\% O\textsubscript{2}), which corresponds to the threshold of hypoxia in physiological conditions.
 It is the level at which \acrshort{hif} has a half-maximal response as well \cite{McKeown2014}.
 Cells above this level are considered to be in normoxia while the rest of the cells are in hypoxia.
@@ -159,7 +157,21 @@ Only genetics regulations have been modified between each simulation to assess t
 Results are similar to normoxic conditions with no genetic deregulations (figure \ref{fig:tumour-state-environment}). 
 When reducing inhibition of \acrshort{pdh} by \acrshort{pdk}, tumour radius at 7 days of growth is lower than in normoxia and higher than in hypoxia with no mutation. 
 
-Figure \ref{fig:proton-prod-rate} shows that cells start to become hypoxic after day 1, reaching a majority by day 2.
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/genetic-perturbation/acid_rate_o_extra}
+    \caption{
+        Acid production rate following oxygen extracellular concentrations at different times with different genetic perturbations.
+        The red line indicates the hypoxia threshold.
+        Only living cell are represented on the graph.
+        Three genetics pertubations have been selected: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to \acrshort{hif} = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma \acrshort{hif} \to \acrshort{ldh} = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma \acrshort{pdk} \to \acrshort{pdh} = 0.7 $).
+        Tumour growth was initiated in normoxia.
+        The green rectangle represents the region corresponding to a Warburg effect.
+    }
+    \label{fig:prod-rate-genetic}
+\end{figure}
+
+Figure \ref{fig:prod-rate-genetic} shows that cells start to become hypoxic after day 1, reaching a majority by day 2.
 After 7 days with a reduced \acrshort{hif} degradation rate by oxygen, extracellular oxygen goes back to normoxic levels yet cells have a higher acid production rate that corresponds to a Warburg effect.
 In this case, we suppose that cells slowly drain oxygen levels in the environment to a point where hypoxia is reached.
 Due to poor oxygen conditions, cells adapt their metabolism to enter a glycolytic state that they keep even if the oxygen supply goes back above 2 \%O\textsubscript{2}.
