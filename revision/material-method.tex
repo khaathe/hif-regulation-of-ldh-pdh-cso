@@ -30,7 +30,7 @@ Here, n is the Hill coefficient.
 S is the gene level with a half-threshold of production.
 The positive parameter $\gamma$ represents an activation if $>1$ or an inhibition if $<1$.
 $H_{Y \to Z}$ represents the effect of the regulating gene $Y$ on the regulated gene $Z$, it
-can be an upregulation, if $\gamma$ is $>1$, or a downregulation, if $\gamma$ is $<1$.
+can be an upregulation if $\gamma$ is $>1$, or a downregulation if $\gamma$ is $<1$.
 All genes levels are dimensionless, parameters used in the equation above are summarised in table \ref{tab:param-genetic-reg}.
 
 \begin{table}
@@ -71,7 +71,7 @@ AcetylCoA by \acrshort{pdh} enzymes to feed the \acrshort{tca} cycle.
 The \acrshort{tca} cycle works in cooperation with \acrshort{oxphos} to produce \acrshort{atp} using oxygen, which constitute the aerobic pathway \cite{Zimmerman2011}.
 Since the conversion of pyruvate to AcetylCoA is catalyzed by the PDH enzyme, its availability bound the use of \acrshort{tca} and should be reflected in the consumption of oxygen.
 In hypoxia, glucose consumption is increased to produce the \acrshort{atp} needed using aerobic pathways. Pyruvate formed by glycolysis is then turned into lactate by \acrshort{ldh} enzymes, increasing acidity in the microenvironment \cite{Zimmerman2011}. Like \acrshort{pdh}, increased \acrshort{ldh} levels should reflect an increased usage of anaerobic pathways with higher consumption of glucose.
-As \acrshort{pdh} and \acrshort{ldh} play an important role in the fate of pyruvate, their respective level should impact the metabolism of cells in our model. \\
+As \acrshort{pdh} and \acrshort{ldh} play an important role in the fate of pyruvate, their respective levels should impact cells metabolism in our model. \\
 In equation \ref*{formula:po} and \ref*{formula:pg}, we define $p_O$ and $p_G$, two terms to describe the impact of \acrshort{ldh} and \acrshort{pdh} on glucose and oxygen consumptions using a sigmoid function based on the logistic funtion.
 $p_O$ and $p_G$ will adjust the consumptions rates of oxygen and glucose defined in equation \ref*{fun:fo} and \ref*{fun:fg}, by increasing or decreasing the maximal rates according to the level of \acrshort{pdh} and \acrshort{ldh}.
 \begin{align} 
@@ -85,7 +85,7 @@ $\psi_O$ and $\psi_G$ are the minimal values for $p_O$ and $p_G$.
 $z$ and $v$ are the current level of \acrshort{pdh} and \acrshort{ldh}.
 $z_0$ and $v_0$ represent the midpoint of $p_O$ and $p_G$. 
 $l_z$ and $l_v$ represent the steepness of the curve for $p_O$ and $p_G$. \\
-Cells consumption and production are described following the functions from the model defined by \cite{Robertson-Tessi2015}. \\
+Cells consumption and production are described following the functions from the model defined by \cite{Robertson-Tessi2015} (a brief description of the complete model is avail in appendix). \\
 Oxygen consumption is determined using a Michaelis-Menten function \cite{Robertson-Tessi2015}:
 \begin{equation}
     \label{fun:fo}
@@ -122,7 +122,7 @@ Lactic acid production is given by the glucose consumed:
     f_{H^+} = k_H 2 f_G
 \end{equation}
 $k_H$ is a fixed parameter for proton buffering (dimensionless). \\
-Quantities consumed and produced by one cell are modelled using the ODE:
+Quantities consumed and produced by one cell are modelled using the following ODEs:
 \begin{align}
     \label{ode:do}
     \frac{dO}{dt} = f_O \\
@@ -136,7 +136,7 @@ Quantities consumed and produced by one cell are modelled using the ODE:
 where O, G, A and \protons are oxygen, glucose, atp and protons.
 Since we are measuring quantities that are consummed or produced by the cells, initial values for equations \ref*{ode:do} - \ref*{ode:dh} should be equal to 0. 
 Thus, $O(t=0) = G(t=0) = A(t=0) = H^+(t=0) = 0$. \\
-The extracellular quantities of three molecules oxygen (O), glucose (G) and protons (\protons) are described in the model by:
+The extracellular quantities of three molecules oxygen (O), glucose (G) and protons (\protons) are described in the model by the following PDEs:
 \begin{align}
     \label{pde:do}
     \frac{\partial O}{\partial t} &= D_O \nabla^2 O - f_O \\
