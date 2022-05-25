@@ -1,16 +1,14 @@
-\DIFaddbegin \appendix
-
-\section{\DIFadd{Appendix}}
+\DIFaddbegin \section{\DIFadd{Supplementary Material}}
 
 \subsection{\DIFadd{Model from Robertson-Tessi and al. }}
-\DIFadd{In this section, we will briefly describe the model from }\cite*{Robertson-Tessi2015}\DIFadd{.
-The author describe an }\acrfull{hca} \DIFadd{model which is simulated on a grid with square lattice.
+\DIFadd{In this section, we describe the model from }\cite*{Robertson-Tessi2015}\DIFadd{.
+The authors describe a }\acrfull{hca} \DIFadd{model which is simulated on a square lattice grid.
 Each grid point can be empty or occupied by a cell.
 Cell consumptions, energy production and acid secretion are computed by several functions and included into a PDE to determine substrates concentrations accross the microenvironment.
 }
 
 \DIFadd{Cells will produce a target level of }\acrshort{atp} \DIFadd{using mostly aerobic pathways when oxygen is available. 
-Oxygen consumption is described using a Michaelis-Menten function.
+Oxygen consumption $f_O$ is described using a Michaelis-Menten function.
 }\begin{equation}
     \DIFadd{\label{appendix:fo-robertson}
     f_O = - V_O }{ \DIFadd{\frac{O}{ O + k_O} }}
@@ -18,20 +16,20 @@ Oxygen consumption is described using a Michaelis-Menten function.
 \DIFadd{with $V_O$ the maximum oxygen consumption rate, $O$ the extracellular oxygen concentration and $k_O$ the extracellular oxygen concentration at which oxygen consumption is half maximum. }\\
 \DIFadd{Anaerobic pathways are an alternative way to produce }\acrshort{atp} \DIFadd{when cell requirement is not met using aerobic pathways.
 Therefore, glucose consumption is increased to make up for the lack of }\acrshort{atp}\DIFadd{.
-Glucose consumption is determined by a Michaelis-Menten equation with a modified term to reflect the increase of glucose consumption when oxygen is not available.
+Glucose consumption $f_G$ is determined by a Michaelis-Menten equation with a modified term to reflect the increase of glucose consumption when oxygen is not available.
 }\begin{equation}
     \DIFadd{\label{appendix:fg-robertson}
     f_G = - ( \frac{p_{G} A_0}{2} + \frac{27 f_O}{10} ) }{ \DIFadd{\frac{G}{ G + k_G} }}
 \DIFadd{}\end{equation}
 \DIFadd{where $G$ is the extracellular glucose concentration, $k_G$ the half-maximum, $A_0$ the target level of }\acrshort{atp} \DIFadd{and $p_G$ is a coefficient to account for the increased glucose metabolism observed for many tumour cells.
-For normal cells have $p_G = 1$, while for tumour cells $p_G>1$.
+For normal cells $p_G = 1$, while for tumour cells $p_G>1$.
 With higher values of $p_G$, cells consume more glucose to produce }\acrshort{atp} \DIFadd{than normal cells.
-Effective }\acrshort{atp} \DIFadd{production is deduced from nutrient consumption.
+Effective }\acrshort{atp} \DIFadd{$f_A$ production is deduced from nutrient consumption.
 }\begin{equation}
     \DIFadd{\label{appendix:fa-robertson}
     f_{A} = - ( 2 f_G + \frac{27 f_O}{5} ) }\\
 \DIFadd{}\end{equation}
-\DIFadd{The amount of glucose used through anaerobic pathways determine the quantity of protons secreted.
+\DIFadd{The amount of glucose used through anaerobic pathways determine the quantity of protons secreted $f_H^+$.
 }\begin{equation}
     \DIFadd{\label{appendix:fh-robertson}
     f_{H^+} = k_H ( \frac{ 29 ( p_G V_O + f_O) }{5})
@@ -39,8 +37,7 @@ Effective }\acrshort{atp} \DIFadd{production is deduced from nutrient consumptio
 \DIFadd{where $k_H$ is a proton buffering coefficient.
 }
 
-\DIFadd{Cell consumptions and productions are used to dermine the concentration of a molecule accross the microenvironment.
-The concentration $C$ of a molecule $x$ is described by the equation :
+\DIFadd{Cell consumptions and productions are used to dermine the concentration $C$ of a given substrate accross the microenvironment as follows :
 }\begin{equation}
     \DIFadd{\label{appendix:pde-robertson}
     \frac{\partial C}{\partial t} = D \nabla^2 C + f(C,p) 
