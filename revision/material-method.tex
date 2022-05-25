@@ -213,7 +213,8 @@ Most aspect of the model are handled by the physicell software \cite*{Ghaffariza
 Cells are modelled with the shape of a sphere that cannot deform, adhesion and repulsion are implemented using a potential function.
 The cell division process is implemented as a cycle, where the user can define each steps and and progression between them.
 There is no condition on the neighbourhood, a cell will divide even if it is surrounded by other cells as long as there is sufficient nutrient.
-As a consequence, certain regions of the tumour will exhibit a higher cell density and a lower substrate diffusion.
+As a consequence, certain regions of the tumour will exhibit a higher cell density.
+We implemented in Physicell an heterogeneous diffusion with respect to local cellular density.
 In the model, phases duration are 5h in G1, 8h in S, 4h in G2 and 1h in M, for a total of 18h to complete a cell cycle \cite{Cooper2000}.
 
 Here, the impact of extracellular oxygen concentration is studied considering different boundary conditions: physiological normoxia at 0.056 mmol/L (5\% O\textsubscript{2}), pathological hypoxia at 0.01112 mmol/L (1\% O\textsubscript{2}) and a last where boundary conditions are modified during the simulation from physiological normoxia to pathological hypoxia. 
