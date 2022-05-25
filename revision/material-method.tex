@@ -122,33 +122,25 @@ Lactic acid production is given by the glucose consumed:
     f_{H^+} = k_H 2 f_G
 \end{equation}
 $k_H$ is a fixed parameter for proton buffering (dimensionless). \\
-Quantities consumed and produced by one cell are modelled using the following ODEs:
+Quantity of \acrshort{atp} produced by the cell is modelled by an ODE, and extracellular quantities of the three molecules oxygen (O), glucose (G) and protons (\protons) are described by PDEs in the following equations:
 \begin{align}
-    \label{ode:do}
-    \frac{dO}{dt} = f_O \\
-    \label{ode:dg}
-    \frac{dG}{dt} = f_G \\
     \label{ode:da}
-    \frac{dA}{dt} = f_A \\
-    \label{ode:dh}
-    \frac{dH^+}{dt} = f_H^+ 
-\end{align}
-where O, G, A and \protons are oxygen, glucose, \acrshort{atp} and protons.
-Since we are measuring quantities that are consummed or produced by the cells, initial values for equations \ref*{ode:do} - \ref*{ode:dh} should be equal to 0. 
-Thus, $O(t=0) = G(t=0) = A(t=0) = H^+(t=0) = 0$. \\
-The extracellular quantities of three molecules oxygen (O), glucose (G) and protons (\protons) are described in the model by the following PDEs:
-\begin{align}
+    \frac{dA}{dt} &= f_A \\
     \label{pde:do}
-    \frac{\partial O}{\partial t} &= D_O \nabla^2 O - f_O \\
+    \frac{\partial O}{\partial t} &= D_O \nabla^2 O - \sum_{i=1}^{N} f_O^i \\
     \label{pde:dg}
-    \frac{\partial G}{\partial t} &= D_G \nabla^2 G - f_G \\
+    \frac{\partial G}{\partial t} &= D_G \nabla^2 G - \sum_{i=1}^{N} f_G^i \\
     \label{pde:dh}
-    \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + f_{H^+} 
+    \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + \sum_{i=1}^{N} f_{H^+}^i 
 \end{align}
-$D_O$, $D_G$ and $D_{H^+}$ are the diffusion coefficient for each molecules. $f_O$, $f_G$ and $f_{H^+}$ describe the impact of each cell on the extracellular concentration. \\
-Initial values for equations \ref*{pde:do} - \ref*{pde:dh} are $O(x,y,0) = \{0.056, 0.01112\}$  mmol/L, $G(x,y,0) = 5.0$  mmol/L and $H^+(x,y,0) = 3.98.10^{-5}$  mmol/L (pH 7.4).
+$D_O$, $D_G$ and $D_{H^+}$ are the diffusion coefficient for each molecules. $N$ is the number of cells in the domain with $f_O^i$, $f_G^i$ and $f_{H^+}^i$ the impact of the cell i on the local extracellular concentration. \\
+Initial values for oxygen in equation \ref*{pde:do} are $O(x,y,0) = 0.056$  mmol/L in normoxia and 0.012 mmol/L in hypoxia.
+Initial value for glucose in equation \ref*{pde:dg} is $G(x,y,0) = 5.0$  mmol/L.
+Initial value for protons in equation \ref*{pde:dh} is $H^+(x,y,0) = 3.98.10^{-5}$  mmol/L (pH 7.4).
 Let $x_0$ and $y_0$ the lower boundary of the domain in $x$ and $y$, $x_L$ and $y_L$ the upper boundary in $x$ and $y$.
-Boundary values for equations \ref*{pde:do} - \ref*{pde:dh} are $O(x,y,t) = \{0.056, 0.01112\}$, $G(x,y,t) = 5.0$ mmol/L and $H^+(x,y,t) = 3.98.10^{-5}$ mmol/L (pH 7.4) for $x=\{x_0, x_L\}$ and $y=\{y_0, x_L\}$.
+Boundary values for oxygen in equation \ref*{pde:do} are $O(x_0,y,t) = O(x_L,y,t) = O(x,y_0,t) = O(x,y_L,t) =$ 0.056 mmol/L in normoxia and 0.012 mmol/L in hypoxia.
+Boundary values for glucose in equation \ref*{pde:dg} are $G(x_0,y,t) = G(x_L,y,t) = G(x,y_0,t) = G(x,y_L,t) = 5.0$ mmol/L.
+Boundary values for $H^+$ in equation \ref*{pde:dh} are $H^+(x_0,y,t) = H^+(x_L,y,t) = H^+(x,y_0,t) = H^+(x,y_L,t) = 3.98.10^{-5}$ mmol/L (pH 7.4).
 Parameters used in those functions are summarised in Table \ref{tab:param-metabolism}.
 The schematic in figure \ref{fig:model} shows the cellular metabolism and the genetics regulation implemented in the model.
 
@@ -227,7 +219,7 @@ In the model, phases duration are 5h in G1, 8h in S, 4h in G2 and 1h in M, for a
 Here, the impact of extracellular oxygen concentration is studied considering different boundary conditions: physiological normoxia at 0.056 mmol/L (5\% O\textsubscript{2}), pathological hypoxia at 0.01112 mmol/L (1\% O\textsubscript{2}) and a last where boundary conditions are modified during the simulation from physiological normoxia to pathological hypoxia. 
 The hypoxia threshold is set at 0.02085 (2\% O\textsubscript{2}), the level at which \acrshort{hif} has a half-maximal response \cite{McKeown2014}.
 
-The governing ODEs (equation \ref{eq:hif} - \ref{eq:pdh} and \ref{ode:do} - \ref{ode:dh}) and PDEs (equation \ref{pde:do} - \ref{pde:dh}) are run at each timestep to compute cell nutrient consumption, energy and acidity production for that period. 
+The governing ODEs (equation \ref{eq:hif} - \ref{eq:pdh} and \ref{ode:da}) and PDEs (equation \ref{pde:do} - \ref{pde:dh}) are run at each timestep to compute cell nutrient consumption, energy and acidity production for that period. 
 After each time step, the cell state is updated according to the quantity of \acrshort{atp} generated and the extracellular pH.
 Therefore, cells can proliferate and divide only if they were able to generate enough \acrshort{atp} and if extracellular pH is higher than the acid resistance of the cell (6.1 \cite{Robertson-Tessi2015}). 
 If the quantity of \acrshort{atp} generated is less than a threshold ATP\textsubscript{quiescence}, the cell enters quiescence and is then prevented to complete the G1 phase. 
