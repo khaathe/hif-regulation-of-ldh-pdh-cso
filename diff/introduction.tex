@@ -1,0 +1,150 @@
+\section{Introduction}
+
+Cells rely on two main processes to produce \acrshort{atp}: \acrfull{oxphos}
+by using oxygen, and glycolysis by using glucose.
+Glycolysis is a pathway generating both \acrshort{atp} and pyruvate using glucose as input \cite{Bender2013, King2007, Zimmermann2001}. 
+Pyruvate produced by glycolysis can then be used to fuel the \acrfull{tca} cycle and produce the compounds involved in \acrshort{oxphos}, the aerobic pathway. 
+If oxygen is not present, pyruvate is turned into lactate, this process is called fermentation \cite{BlancoAntonio2017}. 
+Lactate formed during fermentation is secreted into the microenvironment which causes a decrease in extracellular pH.
+
+In 1927, Otto Warburg observed that the tumour consumed more glucose and produced more lactic acid than normal tissues \cite{Warburg1927}.
+At first Warburg's observation \DIFdelbegin \DIFdel{didn't }\DIFdelend \DIFaddbegin \DIFadd{did not }\DIFaddend consider the presence of oxygen, yet since increased lactic acid production was also observed when oxygen is available, it has slowly been associated with aerobic glycolysis \cite{Jacquet2021}.
+Nowaday, high rate of glycolysis, even if oxygen is available, is known as the Warburg Effect \cite{Leung2017, Robey2005}.
+In this paper, we will retain this definition.
+Tumours can develop anywhere, yet harsh conditions favour tumour appearance \cite{Damaghi2020}.
+Most tumours have median oxygen levels falling below 2\%, the threshold at which the hypoxic response is half-maximal \cite{McKeown2014}.
+For this reason, a lot of interest has been put in the effect of oxygenation on tumour
+metabolism and specifically on the \acrfull{hif} protein.
+This protein, being the main actor in the cell response to hypoxia, is interesting to explore as a potential target for cancer therapy since hypoxic cells are more radioresistant \cite{McKeown2014, Leung2017}.
+
+\subsection{HIF Structure and Mechanism of action}
+
+The \acrshort{hif} protein was discovered by Semenza and co-workers during a
+study on the erythropoietin (EPO) gene, a gene encoding for the erythropoietin
+hormone involved in red blood cells production, in 1991 \cite{Masoud2015}.
+They found DNA sequences in the gene important for its transcriptional
+activation in hypoxic conditions, now called \acrfull{hre}.
+The \acrshort{hif} protein is a heterodimer composed of two subunits
+HIF-1$\alpha$ and HIF-1$\beta$, it acts as a transcription factor by binding to
+\acrshort{hre} in hypoxic conditions.
+The subunit HIF-1$\alpha$ is oxygen-sensitive and degraded in presence of
+oxygen, compared to the constitutively expressed HIF-1$\beta$ subunit.
+Three isoforms of the $\alpha$ subunit have been identified: HIF-1$\alpha$, HIF2-$\alpha$ and HIF3-$\alpha$.
+HIF-1$\alpha$ and HIF2-$\alpha$ are the most studied of the three homologs,
+HIF-1$\alpha$ is expressed ubiquitously in the body while HIF2-$\alpha$
+expression is tissue-specific \cite{Masoud2015}.
+It has been demonstrated that overexpression or suppression of HIF-1$\alpha$ or
+HIF2-$\alpha$ influence each other \textit{in vitro} and one homolog can be more
+expressed than the other.
+Kidney lesions with early VHL inactivation show more activation of
+HIF-1$\alpha$ than HIF-2$\alpha$ but this balance can change \cite{Xu2012}.
+Transcriptional activity of HIF-1$\alpha$ requires the binding of the co-factor
+CBP/p300 to the C-TAD domain of HIF-1$\alpha$, then \acrshort{hif} will bind to
+\acrshort{hre} and activate the transcription of its target genes
+\cite{Masoud2015, Lee2004, Hayashi2019}.
+
+\subsection{HIF regulation}
+
+Oxygen-dependent regulation of HIF-1$\alpha$ is mainly done by \acrfull{phd} and \acrshort{fih1} enzymes.
+They act at the posttranslational level by inducing its degradation or disrupting its interaction with co-factors.
+\acrfull{phd} proteins catalyze the hydroxylation of proline residues, targeting HIF-1$\alpha$ for proteasomal degradation by the \acrfull{vhl} tumour suppressor protein.
+Hydroxylation of asparagine residues by \acrfull{fih1} inhibits the interaction between HIF-1$\alpha$ and the important co-factor CBP/p300, preventing regulation of HIF-1$\alpha$ target genes.
+Since \acrshort{phd} and \acrshort{fih1} need oxygen to hydroxylate HIF-1$\alpha$ residues, they act as oxygen sensors in the cell response to hypoxia.
+Hypoxia promotes HIF-1$\alpha$ protein stability and transcriptional activity.
+\acrfull{ros} and oncometabolites such as succinate, fumarate, lactate upregulate HIF-1$\alpha$ \cite{Hayashi2019}.
+
+Oxygen-independent mechanisms regulating HIF-1$\alpha$ transcription and translation include PI3K/Akt/ mTOR and RAS/RAF/MEK/ERK pathways.
+Multiple growth factors, oncogenes, mutations (such as in the tumour suppressor genes PTEN and p53) or \acrshort{ros} may increase HIF-1$\alpha$ levels through PI3K and RAS signalling cascade \cite{Hayashi2019, Masoud2015,Lee2004}. 
+A study by The Cancer Genome Atlas (TCGA) identified the most altered genes in glioblastoma, it reveals that RTK/RAS/PI3K are among the frequently altered pathways in this disease \cite{McLendon2008}.
+It suggests that HIF is a strong candidate for cancer therapy, not only because of its role in the cellular response to hypoxia but also for its frequent deregulation in cancer as well.
+\acrshort{hif} regulation is summarized in figure \ref{fig:hif-reg}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{img/hif-reg}
+	\caption{
+	    Regulation of \acrlong{hif} by oxygen-dependent and oxygen-independent mechanisms.
+		PI3K/Akt/mTOR and RAS/RAF/ERK/MEK signalling pathways increase \acrshort{hif} transcription and translation in an oxygen-independent way. 
+		The oxygen-dependent regulation relies mainly on the two enzymes: \acrshort{phd} and \acrshort{fih1}. 
+		\acrshort{phd} catalyzes the oxygen-dependent hydroxylation of proline residues on the \acrshort{hif} protein, which is then targeted for proteasomal degradation by the \acrshort{vhl}. 
+		\acrshort{fih1} catalyzes the oxygen-dependent hydroxylation of asparagine residues, which inhibits the interaction between the \acrshort{hif} protein and the CBP/p300 co-factor.
+		Hydroxylation of \acrshort{hif} residues by \acrshort{phd} and \acrshort{fih1} is inhibited by hypoxia, \acrshort{ros} and oncometabolites such as succinate, fumarate and lactate. 
+	}
+	\label{fig:hif-reg}
+\end{figure}
+
+\subsection{Impact on cellular biological functions}
+
+The cell response to hypoxia initiated by \acrshort{hif} affects many
+biological processes such as cell proliferation, survival,  apoptosis,
+angiogenesis, iron metabolism and glucose metabolism \cite{Lee2004}.
+Pathway enrichment analysis of 98 \acrshort{hif} target genes revealed 20 pathways including those implicated in cancer, glycolysis/gluconeogenesis and metabolism of carbohydrates \cite{Slemc2016}.
+
+\acrshort{hif} can prevent G1/S transition through the regulation of
+cyclin-dependent kinase inhibitors (p21, p27) and cyclin proteins (cyclin G2,
+cyclin E) \cite{Goda2003}.
+Cyclin E downregulation is mediated through the inhibition of cyclin D by
+\acrshort{hif} causing a slowing down or arrest of the cell cycle in the G1 phase
+and promoting the entry into quiescence, which can be a mechanism to escape
+chemotherapy \cite{Bedessem2014}.
+
+The \DIFaddbegin \acrfull{tca} \DIFadd{cycle (also called Citric Acid or Krebs Cycle) is a circular process fueled by AcetylCoA generating NADH and FADH\textsubscript{2} for its use in the }\acrfull{oxphos} \DIFadd{pathway.
+Although }\acrshort{oxphos} \DIFadd{is the main pathway generating }\acrshort{atp}\DIFadd{, }\acrshort{tca} \DIFadd{produce energy in the form of GTP (equivalent of }\acrshort{atp}\DIFadd{). 
+These processes represent the aerobic pathways used by the cell when oxygen is present for }\acrshort{atp} \DIFadd{production.
+Pyruvate produced by the last steps of the glycolysis is turned into Acetyl
+Coenzyme A by }\acrfull{pdh} \DIFadd{to fuel the }\acrshort{tca} \DIFadd{cycle, promoting an oxidative
+metabolism \mbox{%DIFAUXCMD
+\cite{BlancoAntonio2017, Zimmerman2011}}\hspace{0pt}%DIFAUXCMD
+.
+However, }\acrfull{pdk} \DIFadd{an inhibitor of }\acrshort{pdh} \DIFadd{is upregulated by
+}\acrshort{hif} \DIFadd{\mbox{%DIFAUXCMD
+\cite{Li2020}}\hspace{0pt}%DIFAUXCMD
+.
+}
+
+\DIFadd{When oxygen is not present, the }\acrfull{ldh} \DIFadd{enzyme catalyze the reaction in which pyruvate formed by the glycolysis is turned into lactate to generate NAD\textsuperscript{+}. 
+This last step allows glycolysis to continue in anaerobic condition since NAD\textsuperscript{+} is required for pyruvate production.
+In presence of oxygen, NAD\textsuperscript{+} availability is ensured by }\acrshort{oxphos} \DIFadd{\mbox{%DIFAUXCMD
+\cite{BlancoAntonio2017, Zimmerman2011}}\hspace{0pt}%DIFAUXCMD
+.
+}
+
+\DIFadd{The }\DIFaddend Warburg effect is caused by an increase in glucose utilization by the
+cells, the glycolysis being one of the pathways affected by hypoxia.
+\acrshort{hif} increases the expression of glucose transporters GLUT1 and GLUT3 which
+contain \acrshort{hre} in their promoters, resulting in higher glucose uptake
+\cite{Heydarzadeh2020}.
+Furthermore, \acrshort{hif} induces the overexpression of specific glycolytic
+isoforms for each enzyme involved in all the steps of the glycolysis
+\cite{Marin-Hernandez2009}.
+Thus, \acrshort{hif} upregulates the expression of \DIFdelbegin %DIFDELCMD < \acrfull{ldh}%%%
+\DIFdel{,
+an enzyme that catalyzes the reversible reaction in which pyruvate is converted
+to lactate}\DIFdelend \DIFaddbegin \acrshort{ldh}\DIFaddend , resulting in higher lactate secretion which acidifies the microenvironment\DIFdelbegin \DIFdel{.
+}%DIFDELCMD < 
+
+%DIFDELCMD < \acrshort{tca} %%%
+\DIFdel{cycle works in cooperation with the }%DIFDELCMD < \acrshort{oxphos} %%%
+\DIFdel{to
+produce }%DIFDELCMD < \acrshort{atp}%%%
+\DIFdel{.
+Pyruvate produced by the last steps of the glycolysis is turned into Acetyl
+Coenzyme A by }%DIFDELCMD < \acrfull{pdh} %%%
+\DIFdel{to fuel the }%DIFDELCMD < \acrshort{tca} %%%
+\DIFdel{cycle, promoting an oxidative
+metabolism.
+However, }%DIFDELCMD < \acrfull{pdk} %%%
+\DIFdel{an inhibitor of }%DIFDELCMD < \acrshort{pdh} %%%
+\DIFdel{is upregulated by
+}%DIFDELCMD < \acrshort{hif} %%%
+\DIFdel{\mbox{%DIFAUXCMD
+\cite{Li2020}}\hspace{0pt}%DIFAUXCMD
+}\DIFdelend .
+Not only hypoxia will increase the use of glycolysis by the cell, but it will
+also reduce the use of \acrshort{tca} cycle.
+
+In this paper, we want to study how genetic (or epigenetic) regulations, between \acrshort{hif} and its two targets \acrshort{ldh} and \acrshort{pdh}, may affect the emergence of the Warburg effect.
+The Warburg effect results in an increased production of lactic acid by the tumour by metabolizing glucose, even in normoxia \cite{Smallbone2007, Leung2017, Robey2005, Jia2019, Courtnay2015}.
+
+
+%%Gibin: It is a nice little introduction. We may shorten it if needed. 

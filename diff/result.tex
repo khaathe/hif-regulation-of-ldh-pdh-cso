@@ -1,0 +1,203 @@
+\section{Results}
+
+\subsection{Qualitative exploration of the model at the cell scale}
+
+A well-known phenomenon is the Warburg effect, increased production of lactic acid by the tumour \cite{Warburg1927} even in normoxia \cite{Smallbone2007, Leung2017, Robey2005}.
+A qualitative study of the genetic deregulations at the cell scale would reveal how it impacts lactic-acid production to investigate the appearance of the Warburg effect.
+The primary aim of this study is to investigate the role of genetic regulations in cell metabolic changes.
+
+In our mathematical model, the regulating effect of a gene on another is mainly driven by the $\gamma$ parameter in the shifted-Hill function.
+Setting this parameter equal to 1 simulate a loss of the regulating function.
+An over-sensitivity of a gene by its regulator is modelled by setting the $\gamma$ parameter to 40, the maximum defined in the model from \cite{Li2020}.
+Results of a few regulations are shown in figure \ref{fig:acid-prod-map}. 
+
+When no genetic deregulations are applied to the model (figure \ref{fig:acid-prod-map}.A), protons production range from 0.0001 mmol/L/min to 0.001 mmol/L/min with normal $\gamma$ parameters.
+Around 0.01 mmol/L oxygen (1\%), the cell progressively increases its \protons secretion rate from 0.0001 mmol/L/min to the maximum 0.001 mmol/L/min.
+
+In our model, when \acrshort{hif} is not subjected to oxygen degradation (figure \ref{fig:acid-prod-map}.B), the rate of \protons production is only influenced by glucose concentration.
+In this case, cell's lactic-acid secretion rate can reach 0.001 mmol/L/min even in normal oxygen pressure, as a result of the Warburg effect.
+Increased degradation of \acrshort{hif} in oxygen (figure \ref{fig:acid-prod-map}.C) reduces the oxygen threshold at which the cell has a lactic-acid secretion rate of 0.001 mmol/L/min.
+Lower levels of oxygen are needed to reach the maximal secretion rate compared to the normal degradation rate of \acrshort{hif}.
+With no deregulation (figure \ref{fig:acid-prod-map}.A), the lactic-acid secretion rate starts to increase at around 0.019 mmol/L of oxygen and reach a maximum at around 0.08 mmol/L. 
+With increased \acrshort{hif} degradation by oxygen (figure \ref{fig:acid-prod-map}.C), this span is reduced and lactic-acid secretion increases at around 0.012 mmol/L of oxygen. 
+Similar to our result, a model from \cite{Jia2019} shows that a lower degradation rate of \acrshort{hif} increases the chance that cells use glycolysis instead of \acrshort{oxphos}, which will increase lactic acid secretions.
+
+Inhibiting \acrshort{ldh} sensitivity to \acrshort{hif} (figure \ref{fig:acid-prod-map}.D) causes the maximum lactic-acid secretion rate to fall to 0.0008 mmol/L/min. 
+Increasing \acrshort{ldh} sensitivity to \acrshort{hif} does not permit the cell to have a higher \protons production rate in normoxia, while a decrease prevents a high \protons production rate in hypoxia (results not shown). 
+
+Interfering with \acrshort{pdk} sensitivity to \acrshort{hif} or \acrshort{pdh} sensitivity 
+to \acrshort{pdk} seems to have no effect on acid production in the model but on oxygen 
+consumption by the cell (results not shown).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/acid-prod-map-simplified}
+    \caption{ 
+        Influence of genetic upregulation or inhibition on the production rate of protons 
+        at different glucose and oxygen concentrations.
+        (A) Result with no genetic deregulation.
+        (\DIFaddbeginFL \DIFaddFL{$\gamma_{O_2 \to u} = 10.0$, $\gamma_{u \to v} = 3.61$, $\gamma_{u \to w} = 6.97$, $\gamma_{w \to z} = 0.14$)
+        (}\DIFaddendFL B) Result with inhibition of the oxygen-dependant degradation of \acrshort{hif}.
+        (\DIFaddbeginFL \DIFaddFL{$\gamma_{O_2 \to u} = 1.0$, $\gamma_{u \to v} = 3.61$, $\gamma_{u \to w} = 6.97$, $\gamma_{w \to z} = 0.14$)
+        (}\DIFaddendFL C) Result with over-degradation of \acrshort{hif} by oxygen.
+        (\DIFaddbeginFL \DIFaddFL{$\gamma_{O_2 \to u} = 40.0$, $\gamma_{u \to v} = 3.61$, $\gamma_{u \to w} = 6.97$, $\gamma_{w \to z} = 0.14$)
+        (}\DIFaddendFL D) Result with loss of upregulation of \acrshort{ldh} by \acrshort{hif}.
+        \DIFaddbeginFL \DIFaddFL{($\gamma_{O_2 \to u} = 10.0$, $\gamma_{u \to v} = 3.0$, $\gamma_{u \to w} = 6.97$, $\gamma_{w \to z} = 0.14$)
+    }\DIFaddendFL }
+    \label{fig:acid-prod-map}
+\end{figure}
+
+\subsection{Exploration of environment and genetic  properties on the emergence of the Warburg phenotype}
+
+\subsubsection{Influence of environmental oxygen conditions}
+
+The Warburg effect is currently defined as high production of acidity due to the use of glycolysis even in normoxia \cite{Jia2019,  Courtnay2015, Damaghi2020}.
+We ran several simulations with different environmental oxygen conditions to assess whether microenvironmental conditions only, can induce a Warburg effect in the model.
+
+
+\begin{figure}
+    \centering
+    \DIFdelbeginFL %DIFDELCMD < \includegraphics[width=\textwidth]{img/environmental-condition/tumour_current_phase}
+%DIFDELCMD <     %%%
+\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{img/tumour_current_phase}
+    \DIFaddendFL \caption{ 
+        Evolution of tumour growth at different times in different conditions.
+        In oscillating conditions, the oxygen concentration is slowly decreased from normoxia to hypoxia during 6 hours, then cells are slowly put back in normoxia at the same rate.
+        This process is repeated until the end of the simulation.
+    }
+    \label{fig:tumour-state-environment}
+\end{figure}    
+
+Figure \ref{fig:tumour-state-environment} shows how oxygen conditions affect tumour growth.
+In oscillating conditions, the oxygen concentration varies between physiological normoxia and pathological hypoxia and reverse every 6 hours until the end of the simulation.
+Kinetics of \acrshort{hif} show a peak after 6h and a decrease to an equilibrium state after  24h-48h.
+We choose to simulate 6h-period of hypoxia/normoxia to avoid the cell reaching an equilibrium and to simulate stressful conditions with a high response to a low level of oxygen.
+Constant hypoxia slows down tumour growth and reduces tumour diameter compared to normoxia.
+In all 3 different conditions, the centre of the tumour is composed of dead cells surrounded by living cells at the periphery.
+Only in normoxia and varying oxygen conditions, some cells in the centre of the tumour do continue to divide (only visible after 7 days of growth).
+This may be due to the changes in the tumour microenvironment with the increased cell death at the centre.
+As the cells die, more nutrients will be available to quiescent cells to enable them to renter proliferating phase.
+Moreover, spatial changes due to the shrinkage of dead cells can influence the availability of nutrients at the centre.
+This might show a mechanism by which the tumour can grow back after a period of harsh conditions, for example quiescence can be a mechanism to avoid drugs effect for the tumour cell \cite{Alarcon2011}. 
+Necrotic core has been observed in biological experiments run in the lab (figure \ref{fig:spheroid-experiment}).
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{img/U87-GFP}
+    \caption{
+        Picture of a spheroid grown for 30 days \DIFaddbeginFL \DIFaddFL{in an experiment run in the laboratory}\DIFaddendFL .
+        Cells were marked using the fluorescent proteins Green FLuorescent Protein (GFP) and Sulforhodamine B (SRB).
+        Living cells are colored in green, dying cells appear in red.
+        The centre of the tumour is composed of hypoxic and dead cells, both do not emit fluorescence.
+    }
+    \label{fig:spheroid-experiment}
+\end{figure}
+
+It seems that varying the concentration of oxygen from normoxia to hypoxia, and reversing this process, every 6 hours \DIFdelbegin \DIFdel{doesn't }\DIFdelend \DIFaddbegin \DIFadd{does not }\DIFaddend affect the diameter of the tumour at the end of the simulation.
+However, a ring of necrotic cells in the swelling phase appears thicker than in other conditions.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/environmental-condition/acid_rate_o_extra}
+    \caption{ 
+        Acid production rate following oxygen extracellular concentrations at different times in different conditions. 
+        The red line indicates the hypoxia threshold.
+        In oscillating conditions, oxygen concentration is slowly decreased from normoxia to hypoxia during 6h, then oxygen is increased to normoxia at the same rate.
+        This process is repeated until the end of the simulation.
+        Only living cells are represented on the graph.
+        The green rectangle represents the region corresponding to a Warburg effect.
+    }
+    \label{fig:prod-rate-environment}
+\end{figure}
+
+Results in figure \ref{fig:prod-rate-environment} show acid production according to the extracellular oxygen concentration. 
+Red line y-axis intercept is equal to 0.02085 mmol/L (2\% O\textsubscript{2}), which corresponds to the threshold of hypoxia in physiological conditions.
+It is the level at which \acrshort{hif} has a half-maximal response as well \cite{McKeown2014}.
+Cells above this level are considered to be in normoxia while the rest of the cells are in hypoxia.
+Levels of extracellular oxygen fall below the hypoxia threshold after 2 days of growth in normoxic conditions (a necrotic core in the centre of the tumour has already formed).
+Due to poor oxygen concentration, cells with higher glycolytic activity appear and reach a \protons production rate of almost $5 \times 10^{-4} \text{mmol/L/min}$.
+The maximum glycolytic activity of cells falls at 7 days of growth because of reduced glucose availability.
+When tumour growth is started in hypoxic conditions, high glycolytic activity is present after only one day of growth.
+In those conditions, the way the cell produces its energy is influenced only by glucose concentrations (similar to the result shown in figure \ref{fig:acid-prod-map}).
+Therefore, hypoxic conditions directly select cells with high glycolytic activity. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/environmental-condition/ldh_and_pdh}
+    \caption{ 
+        Plot of level of \acrshort{pdh} against the level of \acrshort{ldh} coloured by the extracellular oxygen concentration.
+        The graph shows the results \DIFdelbeginFL \DIFdelFL{at different times }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{after 7 days of growth }\DIFaddendFL for different conditions.
+        In oscillating conditions, oxygen concentration is slowly decreased from normoxia to hypoxia during 6h, then oxygen is increased to normoxia at the same rate.
+        This process is repeated until the end of the simulation.
+        Only living cell are represented on the graph.
+    }
+    \label{fig:ldh-pdh-environment}
+\end{figure}    
+
+The fact that, in the model, hypoxia may select cells with high glycolytic activity is supported by the levels of \acrshort{ldh}/\acrshort{pdh} genes presented in figure \ref{fig:ldh-pdh-environment}.
+In normoxia, cells have a level of \acrshort{ldh} and \acrshort{pdh} of 1 for both, it can be associated to an oxidative state.
+In hypoxia, \acrshort{ldh} level reaches 3.0 and \acrshort{pdh} level falls to 0.25, it can be associated to a glycolytic state.
+At the beginning of the simulation in normoxic conditions, cells have 1:1 \acrshort{ldh}/\acrshort{pdh} levels.
+As the simulation goes, oxygen becomes less available.
+Thus \acrshort{ldh} level increases while \acrshort{pdh} level decreases.
+The result in normoxic conditions shows that cells migrate from an oxidative to a glycolytic state as oxygen concentration decreases.
+Cells around 2:0.5 \acrshort{ldh}/\acrshort{pdh} levels have a hybrid state where they rely on both nutrients to produce \acrshort{atp}.
+Again hypoxia selects for cells with high levels of \acrshort{ldh} and low levels of \acrshort{pdh}, suppressing the possibility for the cell to adopt a hybrid state.
+
+Interestingly, extracellular oxygen concentration after 7 days is higher when oxygen varies between normoxia and hypoxia every 6 hours than in constant normoxia.
+Since cells are put in hypoxia several times a day, they rely more on glycolysis and consume less oxygen.
+Cells with higher glycolytic activity ($2.5 \times 10^{-4} \text{mmol/L/min}$) even above the threshold of hypoxia appear at 2 days.
+It suggests that the Warburg Effect can be caused by environmental conditions with rapid variations.
+Combined with figure \ref{fig:ldh-pdh-environment}, genetic levels seems to indicate that cells cannot enter a complete oxidative state and are trapped either in a hybrid or a glycolytic state. 
+
+\subsubsection{Influence of the intrinsic genetic properties of the cell}
+
+\DIFaddbegin \DIFadd{Here}\DIFaddend , tumour growth is initiated in normoxia \DIFaddbegin \DIFadd{(results not shown)}\DIFaddend . 
+Extracellular oxygen concentrations only vary due to cells consumption and reduced diffusion in the tumour.
+Only genetics regulations have been modified between each simulation to assess the impact of different genetic deregulations (mutations or epigenetic alterations) on tumour growth and cell metabolism. 
+Results are similar to normoxic conditions with no genetic deregulations (\DIFaddbegin \DIFadd{presented in }\DIFaddend figure \ref{fig:tumour-state-environment}). 
+When reducing inhibition of \acrshort{pdh} by \acrshort{pdk}, tumour radius at 7 days of growth is lower than in normoxia and higher than in hypoxia with no mutation. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/genetic-perturbation/acid_rate_o_extra}
+    \caption{
+        Acid production rate following oxygen extracellular concentrations at different times with different genetic perturbations.
+        The red line indicates the hypoxia threshold.
+        Only living cell are represented on the graph.
+        Three genetics pertubations have been selected: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to \acrshort{hif} = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma \acrshort{hif} \to \acrshort{ldh} = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma \acrshort{pdk} \to \acrshort{pdh} = 0.7 $).
+        Tumour growth was initiated in normoxia.
+        The green rectangle represents the region corresponding to a Warburg effect.
+    }
+    \label{fig:prod-rate-genetic}
+\end{figure}
+
+Figure \ref{fig:prod-rate-genetic} shows that cells start to become hypoxic after day 1, reaching a majority by day 2.
+After 7 days with a reduced \acrshort{hif} degradation rate by oxygen, extracellular oxygen goes back to normoxic levels yet cells have a higher acid production rate that corresponds to a Warburg effect.
+In this case, we suppose that cells slowly drain oxygen levels in the environment to a point where hypoxia is reached.
+Due to poor oxygen conditions, cells adapt their metabolism to enter a glycolytic state that they keep even if the oxygen supply goes back above 2 \%O\textsubscript{2}.
+Together with the result in figure \ref{fig:ldh-pdh-genetic}, this might be caused by a delay in the response from returning to normal conditions since \acrshort{hif} regulation by O\textsubscript{2} is affected.
+While some cells have levels of \acrshort{ldh} greater than 2 and \acrshort{pdh} lower than 0.50 (hybrid to glycolytic state), some have a ratio of \acrshort{ldh}/\acrshort{pdh} almost equal to 1:1.
+This suggests that the Warburg Effect \DIFdelbegin \DIFdel{isn't }\DIFdelend \DIFaddbegin \DIFadd{is not }\DIFaddend irreversible with a reduced \acrshort{hif} degradation rate by oxygen alone. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{img/genetic-perturbation/ldh_and_pdh}
+    \caption{
+        Plot of level of \acrshort{pdh} against the level of \acrshort{ldh} coloured by the extracellular oxygen concentration.
+        The graph shows the results \DIFdelbeginFL \DIFdelFL{at different times }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{after 7 days of growth }\DIFaddendFL with three different genetic perturbations: reduced oxygen induced degradation  of \acrshort{hif} ($\gamma O_2 \to \acrshort{hif} = 8.0 $), lower use of glycolysis in hypoxic conditions ( $\gamma \acrshort{hif} \to \acrshort{ldh} = 2.0 $) and lower effect of hypoxia on oxygen consumption ( $\gamma \acrshort{pdk} \to \acrshort{pdh} = 0.7 $).
+        Tumour growth was initiated in normoxia.
+    }
+    \label{fig:ldh-pdh-genetic}
+\end{figure}
+
+As expected, reducing the increase in \acrshort{ldh} levels due to \acrshort{hif} response \DIFdelbegin \DIFdel{doesn't }\DIFdelend \DIFaddbegin \DIFadd{does not }\DIFaddend induce a high acidification rate in normoxia but affects the maximum acid production rate and level of \acrshort{ldh}.
+Instead of inducing a glycolytic phenotype, it seems to repress it.
+
+Reducing the inhibiting power of \acrshort{pdk} on \acrshort{pdh} allows the cell to keep a higher \acrshort{pdh} level, a key enzyme for oxygen consumption and oxidative state in the model.
+Cells exhibit an acid production rate similar to those in hypoxic conditions after 2 and 7 days, compared to other genetics deregulation.
+While in normoxia with no genetic deregulation cells seem to fluctuate around the threshold of hypoxia, here they are all below this level.
+Since \acrshort{pdh} \DIFdelbegin \DIFdel{isn't }\DIFdelend \DIFaddbegin \DIFadd{is not }\DIFaddend effectively regulated by \acrshort{hif}, the cell tends to stay in an oxidative state and rely less on glycolysis.
+We can suppose that cells consume oxygen even when the level fall, creating further harder conditions.
+Results also show that adaptation to hypoxia is delayed and the cell only adopts a glycolytic state at oxygen conditions near-pathological hypoxia.
+\acrshort{pdh} levels \DIFdelbegin \DIFdel{don't }\DIFdelend \DIFaddbegin \DIFadd{do not }\DIFaddend fall far below 0.75 even after 7 days of growth compared to others conditions, indicating that cells can only adopt an oxidative or hybrid state.
