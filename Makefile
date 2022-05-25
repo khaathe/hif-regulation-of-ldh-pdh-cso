@@ -32,4 +32,4 @@ latexdiff: diff.tex
 	latexdiff $(DIFF_OPTS) manuscript/conclusion.tex revision/conclusion.tex > diff/conclusion.tex
 	latexdiff $(DIFF_OPTS) manuscript/acknowledgements.tex revision/acknowledgements.tex > diff/acknowledgements.tex
 	latexdiff $(DIFF_OPTS) manuscript/conflicts-of-interest.tex revision/conflicts-of-interest.tex > diff/conflicts-of-interest.tex
-	latexdiff $(DIFF_OPTS) manuscript/appendix.tex revision/appendix.tex > diff/appendix.tex
+	latexdiff $(DIFF_OPTS) manuscript/supplementary-material.tex revision/supplementary-material.tex > diff/supplementary-material.tex
