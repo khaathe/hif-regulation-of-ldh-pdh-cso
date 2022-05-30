@@ -127,13 +127,14 @@ Quantity of \acrshort{atp} produced by the cell is modelled by an ODE, and extra
     \label{ode:da}
     \frac{dA}{dt} &= f_A \\
     \label{pde:do}
-    \frac{\partial O}{\partial t} &= D_O \nabla^2 O - \sum_{i=1}^{N} f_O^i \\
+    \frac{\partial O}{\partial t} &= D_O \nabla^2 O - \sum_{k=1}^{N_i} f_O^k \\
     \label{pde:dg}
-    \frac{\partial G}{\partial t} &= D_G \nabla^2 G - \sum_{i=1}^{N} f_G^i \\
+    \frac{\partial G}{\partial t} &= D_G \nabla^2 G - \sum_{k=1}^{N_i} f_G^k \\
     \label{pde:dh}
-    \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + \sum_{i=1}^{N} f_{H^+}^i 
+    \frac{\partial H^+}{\partial t} &= D_{H^+} \nabla^2 H^+ + \sum_{k=1}^{N_i} f_{H^+}^k 
 \end{align}
-$D_O$, $D_G$ and $D_{H^+}$ are the diffusion coefficient for each molecules. $N$ is the number of cells in the domain with $f_O^i$, $f_G^i$ and $f_{H^+}^i$ the impact of the cell i on the local extracellular concentration. \\
+$D_O$, $D_G$ and $D_{H^+}$ are the diffusion coefficient for each molecules.
+$N_i$ is the number of cells in the voxel $i$.
 Initial values for oxygen in equation \ref*{pde:do} are $O(x,y,0) = 0.056$  mmol/L in normoxia and 0.012 mmol/L in hypoxia.
 Initial value for glucose in equation \ref*{pde:dg} is $G(x,y,0) = 5.0$  mmol/L.
 Initial value for protons in equation \ref*{pde:dh} is $H^+(x,y,0) = 3.98.10^{-5}$  mmol/L (pH 7.4).
